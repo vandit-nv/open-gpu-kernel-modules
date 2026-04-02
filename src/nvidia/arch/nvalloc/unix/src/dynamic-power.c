@@ -2080,8 +2080,8 @@ static NvBool RmCheckRtd3GcxSupport(
     }
 
     *bGC6Support = pGpu->getProperty(pGpu, PDB_PROP_GPU_RTD3_GC6_SUPPORTED);
-    *bGCOFFSupport = nvp->b_mobile_config_enabled ? *bGC6Support :
-                     pGpu->getProperty(pGpu, PDB_PROP_GPU_RTD3_GCOFF_SUPPORTED);
+    *bGCOFFSupport = pGpu->getProperty(pGpu, PDB_PROP_GPU_RTD3_GCOFF_SUPPORTED) ||
+                     pGpu->getProperty(pGpu, PDB_PROP_GPU_LEGACY_GCOFF_SUPPORTED);
 
     if (!(*bGC6Support) &&
         !(*bGCOFFSupport) &&
